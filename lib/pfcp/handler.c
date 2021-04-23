@@ -80,12 +80,15 @@ void ogs_pfcp_cp_handle_association_setup_response(
 {
     int i;
 
+    ogs_debug("before ogs_pfcp_cp_handle_association_setup_response");
     ogs_assert(xact);
+    ogs_debug("ogs_pfcp_xact_commit");
     ogs_pfcp_xact_commit(xact);
 
     ogs_assert(node);
     ogs_assert(rsp);
 
+    ogs_debug("ogs_gtpu_resource_remove_all");
     ogs_gtpu_resource_remove_all(&node->gtpu_resource_list);
 
     for (i = 0; i < OGS_MAX_NUM_OF_GTPU_RESOURCE; i++) {
@@ -107,6 +110,7 @@ void ogs_pfcp_cp_handle_association_setup_response(
                 node->up_function_features_len);
         }
     }
+    ogs_debug("after ogs_pfcp_cp_handle_association_setup_response");
 }
 
 void ogs_pfcp_up_handle_association_setup_request(
@@ -114,6 +118,7 @@ void ogs_pfcp_up_handle_association_setup_request(
         ogs_pfcp_association_setup_request_t *req)
 {
     ogs_assert(xact);
+    ogs_debug("before ogs_pfcp_up_handle_association_setup_request");
     ogs_pfcp_up_send_association_setup_response(
             xact, OGS_PFCP_CAUSE_REQUEST_ACCEPTED);
 
@@ -121,6 +126,7 @@ void ogs_pfcp_up_handle_association_setup_request(
         ogs_pfcp_self()->cp_function_features.octet5 =
             req->cp_function_features.u8;
     }
+    ogs_debug("after ogs_pfcp_up_handle_association_setup_request");
 }
 
 void ogs_pfcp_up_handle_association_setup_response(

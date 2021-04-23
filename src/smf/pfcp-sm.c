@@ -132,9 +132,12 @@ void smf_pfcp_state_will_associate(ogs_fsm_t *s, smf_event_t *e)
             OGS_FSM_TRAN(s, smf_pfcp_state_associated);
             break;
         case OGS_PFCP_ASSOCIATION_SETUP_RESPONSE_TYPE:
+            ogs_debug("before OGS_PFCP_ASSOCIATION_SETUP_RESPONSE_TYPE");
             ogs_pfcp_cp_handle_association_setup_response(node, xact,
                     &message->pfcp_association_setup_response);
+            ogs_debug("after OGS_PFCP_ASSOCIATION_SETUP_RESPONSE_TYPE");
             OGS_FSM_TRAN(s, smf_pfcp_state_associated);
+            ogs_debug("TRAN");
             break;
         default:
             ogs_warn("cannot handle PFCP message type[%d]",

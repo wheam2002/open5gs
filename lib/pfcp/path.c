@@ -250,14 +250,19 @@ void ogs_pfcp_up_send_association_setup_response(ogs_pfcp_xact_t *xact,
     h.type = OGS_PFCP_ASSOCIATION_SETUP_RESPONSE_TYPE;
     h.seid = 0;
 
+    ogs_debug("ogs_pfcp_up_build_association_setup_response");
     pkbuf = ogs_pfcp_up_build_association_setup_response(h.type, cause);
     ogs_expect_or_return(pkbuf);
 
+    ogs_debug("ogs_pfcp_xact_update_tx");
     rv = ogs_pfcp_xact_update_tx(xact, &h, pkbuf);
     ogs_expect_or_return(rv == OGS_OK);
 
+    ogs_debug("ogs_pfcp_xact_commit");
     rv = ogs_pfcp_xact_commit(xact);
     ogs_expect(rv == OGS_OK);
+
+    ogs_debug("DONE");
 }
 
 void ogs_pfcp_send_g_pdu(ogs_pfcp_pdr_t *pdr, ogs_pkbuf_t *sendbuf)

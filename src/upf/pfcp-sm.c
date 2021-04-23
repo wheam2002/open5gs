@@ -126,9 +126,12 @@ void upf_pfcp_state_will_associate(ogs_fsm_t *s, upf_event_t *e)
 
         switch (message->h.type) {
         case OGS_PFCP_ASSOCIATION_SETUP_REQUEST_TYPE:
+            ogs_debug("before OGS_PFCP_ASSOCIATION_SETUP_REQUEST_TYPE");
             ogs_pfcp_up_handle_association_setup_request(node, xact,
                     &message->pfcp_association_setup_request);
+            ogs_debug("after OGS_PFCP_ASSOCIATION_SETUP_REQUEST_TYPE");
             OGS_FSM_TRAN(s, upf_pfcp_state_associated);
+            ogs_debug("TRAN");
             break;
         case OGS_PFCP_ASSOCIATION_SETUP_RESPONSE_TYPE:
             ogs_pfcp_up_handle_association_setup_response(node, xact,

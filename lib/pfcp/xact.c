@@ -185,9 +185,13 @@ int ogs_pfcp_xact_update_tx(ogs_pfcp_xact_t *xact,
     ogs_pfcp_header_t *h = NULL;
     int pfcp_hlen = 0;
     
+    ogs_debug("1");
     ogs_assert(xact);
+    ogs_debug("2");
     ogs_assert(xact->node);
+    ogs_debug("3");
     ogs_assert(hdesc);
+    ogs_debug("4");
     ogs_assert(pkbuf);
 
     ogs_debug("[%d] %s UPD TX-%d  peer [%s]:%d",
