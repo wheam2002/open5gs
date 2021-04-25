@@ -97,7 +97,7 @@ void ogs_pkbuf_default_init(ogs_pkbuf_config_t *config)
     config->cluster_512_pool = 4096;
     config->cluster_1024_pool = 1024;
     config->cluster_2048_pool = 512;
-    config->cluster_8192_pool = 128;
+    config->cluster_8192_pool = 512;
     config->cluster_big_pool = 8;
 }
 
